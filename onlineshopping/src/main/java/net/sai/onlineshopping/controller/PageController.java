@@ -1,19 +1,26 @@
 package net.sai.onlineshopping.controller;
 
+import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.servlet.ModelAndView;
 
+import net.sai.onlineshopping.Exception.ProductNotFound;
 import net.sai.shoppingbackend.dao.CategoryDao;
+import net.sai.shoppingbackend.dao.ProductDao;
 import net.sai.shoppingbackend.dto.Category;
+import net.sai.shoppingbackend.dto.Product;
 
 @Controller
 public class PageController {
-	
+	final static Logger logger=Logger.getLogger(PageController.class);
 	@Autowired
 	private CategoryDao categoryDao;
+	
+	@Autowired
+	private ProductDao productDao;
 	
 	@RequestMapping(value={"/","/home","/index"})
 	public ModelAndView index()
@@ -68,5 +75,19 @@ public class PageController {
 		mv.addObject("category", category);
 		return mv;
 	}
-
+	/*
+	 * Viewing a single product*/
+	@RequestMapping(value={"/show/{id}/product"})
+	public ModelAndView showSingleProduct(@PathVariable("id") int id) throws ProductNotFound{
+	ModelAndView mv=new ModelAndView("page");
+	Product product=productDao.get(id);
+	if(product==null) throw new ProductNotFound();
+	product.setViews(product.getViews() +1);
+	productDao.update(product);
+	mv.addObject("title", product.getName());
+	mv.addObject("product",product);
+	mv.addObject("userClickShowProduct",true);
+	return mv;
+	}
+	
 }

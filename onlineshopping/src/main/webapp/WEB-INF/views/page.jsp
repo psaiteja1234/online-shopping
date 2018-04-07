@@ -22,7 +22,7 @@
     <title>Online Shopping ${title}</title>
     <script>
     window.menu='${title}';
-    window.menu='${contextRoot}';
+    window.contextRoot='${contextRoot}';
     
     </script>
 
@@ -30,7 +30,7 @@
     <!-- Bootstrap core CSS -->
     <link href="${css}/bootstrap.min.css" rel="stylesheet">
         
-    
+    <link href="${fonts}/*" rel="stylesheet">
         <link href="${css}/bootstrap-theme.css" rel="stylesheet">
         
         <link href="${css}/dataTables.bootstrap.css" rel="stylesheet">
@@ -60,6 +60,10 @@
  	    <c:if test="${userClickAllProducts==true or userClickCategoryProducts==true}">
  	    <%@include file="listProducts.jsp" %>
  	    </c:if>
+ 	    <!-- loads when click on show product -->
+ 	     <c:if test="${userClickShowProduct==true}">
+ 	    <%@include file="singleProduct.jsp" %>
+ 	    </c:if>
  	    </div>
     <!-- Footer -->
         <%@include file="./shared/footer.jsp" %>
@@ -67,7 +71,7 @@
     <script src="${js}/jquery.js"></script>
     <script src="${js}/bootstrap.min.js"></script>
     <script src="${js}/jquery.dataTables.js"></script>
-  <%--    <script src="${js}/dataTables.bootstrap.js"></script> --%>
+     <script src="${js}/dataTables.bootstrap.js"></script>
     <script src="${js}/myapp.js"></script>
     
 </div>

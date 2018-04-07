@@ -46,7 +46,7 @@ div.dataTables_wrapper div.dataTables_info {
   white-space: nowrap;
 }
 div.dataTables_wrapper div.dataTables_paginate {
-  margin: 0;
+  margin-left:150px;
   white-space: nowrap;
   text-align: right;
 }
@@ -94,6 +94,16 @@ table.dataTable thead .sorting_desc_disabled:after {
   display: block;
   font-family: 'Glyphicons Halflings';
   opacity: 0.5;
+}
+ @font-face {
+    font-family: 'Glyphicons Halflings';
+
+    src: url('../fonts/glyphicons-halflings-regular.eot');
+    src: url('../fonts/glyphicons-halflings-regular.svg');
+    src: url('../fonts/glyphicons-halflings-regular.ttf');
+    src: url('../fonts/glyphicons-halflings-regular.woff');
+    src: url('../fonts/glyphicons-halflings-regular.woff2');
+    src: url('../fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'), url('../fonts/glyphicons-halflings-regular.woff') format('woff'), url('../fonts/glyphicons-halflings-regular.ttf') format('truetype'), url('../fonts/glyphicons-halflings-regular.svg#glyphicons_halflingsregular') format('svg');
 }
 table.dataTable thead .sorting:after {
   opacity: 0.2;
