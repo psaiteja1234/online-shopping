@@ -7,6 +7,11 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Transient;
+import javax.validation.constraints.Min;
+
+import org.hibernate.validator.constraints.NotBlank;
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
 public class Product {
@@ -15,10 +20,14 @@ public class Product {
 	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
 	private String code;
+	@NotBlank(message="Product name is not blank")
 	private String name;
+	@NotBlank(message="please enter description")
 	private String description;
+	@NotBlank(message="please enter brand name")
 	private String brand;
 	@Column(name="unit_price")
+	@Min(value=1, message="the product should not less than 1")
 	private int unitPrice;
 	@Column(name="is_active")
 	private boolean active;
@@ -30,6 +39,15 @@ public class Product {
 	private int purchases;
 	private int views;
 	
+	@Transient
+	private MultipartFile file;
+	
+  	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
 	public Product(){
 		this.code="PRD"+UUID.randomUUID().toString().substring(26).toUpperCase();
 	}

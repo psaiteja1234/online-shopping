@@ -40,6 +40,11 @@ footer{
 	 
 	
 }
+
+.help-block
+{
+	color:#ff0000;
+}
 @font-face {
     font-family: 'Glyphicons Halflings';
 
